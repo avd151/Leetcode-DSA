@@ -1,4 +1,5 @@
 class Solution {
+    //for memoization and recursion
     int util(int i, int j, vector<vector<int>>& matrix, vector<vector<int>>& dp){
         if(j < 0 || j >=matrix[0].size())
             return 1e8;
@@ -37,6 +38,7 @@ public:
         
         for(int j = 0; j < cols; j++){
             ans = min(ans, dp[rows-1][j]);
+//             ans = min(ans, util(rows-1, j, matrix, dp); //for memoization & recursion
         }
         
         return ans;
