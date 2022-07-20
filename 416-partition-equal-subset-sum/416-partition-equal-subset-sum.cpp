@@ -2,7 +2,7 @@ class Solution {
     bool subsetSumToK(int n, int k, vector<int>& arr){
         vector<bool>prev(k+1, 0), cur(k+1, 0);
         prev[0] = cur[0] = true;
-        if(arr[0] < k) prev[arr[0]] = true;
+        if(arr[0] <= k) prev[arr[0]] = true;
         for(int ind = 1; ind < n; ind++){
             for(int targ = 1; targ <= k; targ++){
                 bool notTake = prev[targ];
@@ -17,6 +17,7 @@ class Solution {
         return prev[k];
     }
 public:
+    //TC=O(n+n*target), SC=O(n)
     bool canPartition(vector<int>& nums) {
         int sum = 0;
         int n = nums.size();
