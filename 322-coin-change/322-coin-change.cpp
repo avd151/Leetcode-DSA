@@ -23,25 +23,27 @@ public:
         // if(ans == 1e9)
         //     return -1;
         // return ans;
-        vector<vector<int>>dp(n, vector<int>(amount+1, 0));
+        // vector<vector<int>>dp(n, vector<int>(amount+1, 0));
+        vector<int>prev(amount+1, 0), cur(amount+1, 0);
         for(int a = 1; a <= amount; a++){
             if(a % coins[0] == 0)
-                dp[0][a] = a/coins[0];
+                prev[a] = cur[a] = a/coins[0];
             else
-                dp[0][a] = 1e9;
+                prev[a] = cur[a] = 1e9;
         }
         
         for(int i = 1; i < n; i++){
             for(int amt = 0; amt <= amount; amt++){
-                int notTake = dp[i-1][amt];
+                int notTake = prev[amt];
                 int take = INT_MAX;
                 if(coins[i]<= amt)
-                    take = 1 + dp[i][amt-coins[i]];
-                dp[i][amt] = min(take, notTake);
+                    take = 1 + cur[amt-coins[i]];
+                cur[amt] = min(take, notTake);
             }
+            prev = cur;
         }
-        if(dp[n-1][amount] == 1e9)
+        if(prev[amount] == 1e9)
             return -1;
-        return dp[n-1][amount];
+        return prev[amount];
     }
 };
