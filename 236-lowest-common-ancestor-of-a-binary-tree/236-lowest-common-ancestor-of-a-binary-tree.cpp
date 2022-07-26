@@ -8,7 +8,7 @@
  * };
  */
 class Solution {
-    //TC=O(n), n = no. of nodes, SC=O(n)
+    //TC=O(n), n = no. of nodes, SC=O(h), h = heightof BT
     TreeNode* dfs(TreeNode* root, TreeNode* p, TreeNode* q){
         if(root==p || root==q || root==NULL)
             return root;
